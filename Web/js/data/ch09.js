@@ -1,0 +1,38 @@
+// 结束语 不断谱写马克思主义中国化时代化新篇章
+if (!window.__CHAPTER_DATA__) window.__CHAPTER_DATA__ = [];
+window.__CHAPTER_DATA__.push({
+id:'ch09',title:'结束语 不断谱写马克思主义中国化时代化新篇章',shortTitle:'结束语',
+questions:[
+{id:'ch09-j-001',type:'judge',index:1,content:'时代是思想之母，实践是理论之源。（）',options:null,answer:'√',explanation:'十九大报告中的重要论断。'},
+{id:'ch09-j-002',type:'judge',index:2,content:'马克思主义只有中国化时代化才能救中国、发展中国，才能实现中华民族的伟大复兴。（）',options:null,answer:'√',explanation:'马克思主义中国化时代化是中华民族伟大复兴的必由之路。'},
+{id:'ch09-j-003',type:'judge',index:3,content:'历史表明，没有三民主义和辛亥革命，就没有后面中国共产党的成立。（）',options:null,answer:'×',explanation:'中国共产党成立是马列主义同中国工人运动相结合的产物。'},
+{id:'ch09-j-004',type:'judge',index:4,content:'中国共产党之所以能完成其他政治力量不可能完成的任务，根本在于不断向西方学习借鉴先进经验。（）',options:null,answer:'×',explanation:'根本在于坚持两个结合、推进马克思主义中国化时代化。'},
+{id:'ch09-j-005',type:'judge',index:5,content:'推进马克思主义中国化时代化是一个追求真理、揭示真理、笃行真理的过程。（）',options:null,answer:'√',explanation:'这是对马克思主义中国化时代化过程的准确描述。'},
+{id:'ch09-j-006',type:'judge',index:6,content:'中国共产党的历史，是一部不断推进马克思主义中国化时代化的历史。（）',options:null,answer:'√',explanation:'党的百年历史就是不断推进马克思主义中国化时代化的历史。'},
+{id:'ch09-j-007',type:'judge',index:7,content:'推进马克思主义中国化时代化，是解决中国实际问题的客观需要。（）',options:null,answer:'√',explanation:'中国实际问题需要中国化时代化的马克思主义来指导。'},
+{id:'ch09-j-008',type:'judge',index:8,content:'实践证明，中国共产党为什么能，归根结底是马克思主义行，是中国化时代化的马克思主义行。（）',options:null,answer:'√',explanation:'党的二十大报告中的重要论断。'},
+{id:'ch09-j-009',type:'judge',index:9,content:'马克思主义中国化时代化的理论成果是一脉相承又与时俱进的关系。（）',options:null,answer:'√',explanation:'各理论成果一脉相承又与时俱进。'},
+{id:'ch09-j-010',type:'judge',index:10,content:'马克思主义是我们立党立国的根本指导思想。（）',options:null,answer:'√',explanation:'马克思主义是立党立国的根本指导思想。'},
+{id:'ch09-j-011',type:'judge',index:11,content:'青年兴则国家兴，青年强则国家强。（）',options:null,answer:'√',explanation:'青年是国家的未来和希望。'},
+{id:'ch09-j-012',type:'judge',index:12,content:'广大青年要立大志、明大德、成大才、担大任，增强做中国人的志气、骨气、底气。（）',options:null,answer:'√',explanation:'这是对新时代青年的殷切期望。'},
+{id:'ch09-s-001',type:'single',index:1,content:'（）是马克思主义中国化时代化的第一次历史性飞跃。',options:[{label:'A',text:'毛泽东思想'},{label:'B',text:'科学发展观'},{label:'C',text:'三个代表重要思想'},{label:'D',text:'邓小平理论'}],answer:'A',explanation:'毛泽东思想是第一次历史性飞跃。'},
+{id:'ch09-s-002',type:'single',index:2,content:'马克思主义中国化时代化的最新理论成果是（）。',options:[{label:'A',text:'毛泽东思想'},{label:'B',text:'科学发展观'},{label:'C',text:'习近平新时代中国特色社会主义思想'},{label:'D',text:'邓小平理论'}],answer:'C',explanation:'习近平新时代中国特色社会主义思想是最新成果。'},
+{id:'ch09-s-003',type:'single',index:3,content:'中国特色社会主义理论体系不包括（）。',options:[{label:'A',text:'邓小平理论'},{label:'B',text:'三个代表重要思想'},{label:'C',text:'习近平新时代中国特色社会主义思想'},{label:'D',text:'毛泽东思想'}],answer:'D',explanation:'理论体系始于邓小平理论，不包括毛泽东思想。'},
+{id:'ch09-s-004',type:'single',index:4,content:'（）是我们立党立国的根本指导思想。',options:[{label:'A',text:'马克思主义'},{label:'B',text:'社会主义'},{label:'C',text:'三民主义'},{label:'D',text:'资本主义'}],answer:'A',explanation:'马克思主义是根本指导思想。'},
+{id:'ch09-s-005',type:'single',index:5,content:'中国共产党百年奋斗的主题是（）。',options:[{label:'A',text:'实现共同富裕'},{label:'B',text:'实现全面建成小康社会'},{label:'C',text:'实现社会主义现代化'},{label:'D',text:'实现中华民族伟大复兴'}],answer:'D',explanation:'实现中华民族伟大复兴是百年奋斗的主题。'},
+{id:'ch09-s-006',type:'single',index:6,content:'（）明确把"不断谱写马克思主义中国化时代化新篇章"作为庄严历史责任。',options:[{label:'A',text:'党的十七大'},{label:'B',text:'党的十八大'},{label:'C',text:'党的十九大'},{label:'D',text:'党的二十大'}],answer:'D',explanation:'党的二十大明确提出。'},
+{id:'ch09-s-007',type:'single',index:7,content:'马克思主义中国化时代化的理论成果是一脉相承又（）的关系。',options:[{label:'A',text:'实事求是'},{label:'B',text:'与时俱进'},{label:'C',text:'独立自主'},{label:'D',text:'精益求精'}],answer:'B',explanation:'一脉相承又与时俱进。'},
+{id:'ch09-s-008',type:'single',index:8,content:'广大青年要努力成为堪当（）重任的时代新人。',options:[{label:'A',text:'科技强国'},{label:'B',text:'文化强国'},{label:'C',text:'民族复兴'},{label:'D',text:'改造世界'}],answer:'C',explanation:'堪当民族复兴重任。'},
+{id:'ch09-m-001',type:'multi',index:1,content:'准确把握马克思主义中国化时代化的科学内涵，要做到（）与（）相统一。',options:[{label:'A',text:'坚持马克思主义'},{label:'B',text:'发展马克思主义'},{label:'C',text:'社会主义'},{label:'D',text:'中国特色社会主义'}],answer:'AB',explanation:'坚持与发展相统一。'},
+{id:'ch09-m-002',type:'multi',index:2,content:'坚持和发展马克思主义，必须（）。',options:[{label:'A',text:'同中国具体实际相结合'},{label:'B',text:'同中华优秀传统文化相结合'},{label:'C',text:'同社会主义现代化发展相结合'},{label:'D',text:'同中华民族伟大复兴相结合'}],answer:'AB',explanation:'"两个结合"。'},
+{id:'ch09-m-003',type:'multi',index:3,content:'要不断回答（）。',options:[{label:'A',text:'中国之问'},{label:'B',text:'世界之问'},{label:'C',text:'人民之问'},{label:'D',text:'时代之问'}],answer:'ABCD',explanation:'四个之问。'},
+{id:'ch09-m-004',type:'multi',index:4,content:'中国共产党为什么能，归根到底是（）。',options:[{label:'A',text:'马克思主义经典作家行'},{label:'B',text:'科学社会主义行'},{label:'C',text:'马克思主义行'},{label:'D',text:'中国化时代化的马克思主义行'}],answer:'CD',explanation:'马克思主义行，中国化时代化的马克思主义行。'},
+{id:'ch09-m-005',type:'multi',index:5,content:'中国特色社会主义理论体系包括（）。',options:[{label:'A',text:'邓小平理论'},{label:'B',text:'三个代表重要思想'},{label:'C',text:'科学发展观'},{label:'D',text:'习近平新时代中国特色社会主义思想'}],answer:'ABCD',explanation:'四个理论成果构成理论体系。'},
+{id:'ch09-m-006',type:'multi',index:6,content:'以下说法正确的是（）。',options:[{label:'A',text:'邓小平理论是开篇之作'},{label:'B',text:'三个代表重要思想推动了跨世纪发展'},{label:'C',text:'科学发展观实现了新发展'},{label:'D',text:'习近平新时代中国特色社会主义思想谱写了新篇章'}],answer:'ABCD',explanation:'四个选项都正确。'},
+{id:'ch09-m-007',type:'multi',index:7,content:'关于毛泽东思想和中国特色社会主义理论体系说法正确的是（）。',options:[{label:'A',text:'都是马列主义在中国的运用和发展'},{label:'B',text:'都以独创性理论成果丰富发展了马克思主义'},{label:'C',text:'毛泽东思想为理论体系提供了基本遵循'},{label:'D',text:'理论体系丰富发展了毛泽东思想'}],answer:'ABCD',explanation:'都正确描述了二者关系。'},
+{id:'ch09-m-008',type:'multi',index:8,content:'党能够完成艰巨任务的根本在于（）。',options:[{label:'A',text:'坚持解放思想实事求是'},{label:'B',text:'坚持两个结合'},{label:'C',text:'坚持实践是检验真理的唯一标准'},{label:'D',text:'坚持一切从实际出发'}],answer:'ABCD',explanation:'这些都是根本原因。'},
+{id:'ch09-m-009',type:'multi',index:9,content:'广大青年要（）。',options:[{label:'A',text:'立大志'},{label:'B',text:'明大德'},{label:'C',text:'成大才'},{label:'D',text:'担大任'}],answer:'ABCD',explanation:'立大志、明大德、成大才、担大任。'},
+{id:'ch09-m-010',type:'multi',index:10,content:'新时代好青年的标准是（）。',options:[{label:'A',text:'有理想'},{label:'B',text:'敢担当'},{label:'C',text:'能吃苦'},{label:'D',text:'肯奋斗'}],answer:'ABCD',explanation:'有理想、敢担当、能吃苦、肯奋斗。'},
+{id:'ch09-m-011',type:'multi',index:11,content:'马克思主义中国化时代化就是坚持把马克思主义基本原理同（）相结合。',options:[{label:'A',text:'中国具体实际'},{label:'B',text:'世界其它国家优秀文化'},{label:'C',text:'中华优秀传统文化'},{label:'D',text:'世界百年未有之大变局'}],answer:'AC',explanation:'两个结合：中国具体实际、中华优秀传统文化。'},
+{id:'ch09-m-012',type:'multi',index:12,content:'毛泽东思想、（）同马列主义一起是党和国家必须长期坚持的指导思想。',options:[{label:'A',text:'邓小平理论'},{label:'B',text:'三个代表重要思想'},{label:'C',text:'科学发展观'},{label:'D',text:'习近平新时代中国特色社会主义思想'}],answer:'ABCD',explanation:'都是必须长期坚持的指导思想。'}
+]});

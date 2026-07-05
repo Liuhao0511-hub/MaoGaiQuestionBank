@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- 底色圆 -->
+  <circle cx="100" cy="100" r="98" fill="#1a5276"/>
+  <!-- 白色内圈装饰 -->
+  <circle cx="100" cy="100" r="88" fill="none" stroke="white" stroke-width="1.5" opacity="0.3"/>
+  <!-- 顶部书本简笔 -->
+  <path d="M65 60 Q100 68 135 60" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+  <rect x="68" y="58" width="16" height="10" rx="1" fill="white" opacity="0.5"/>
+  <rect x="116" y="58" width="16" height="10" rx="1" fill="white" opacity="0.5"/>
+  <!-- “毛概” 大字，白字蓝描边，保证任何系统都清晰 -->
+  <text x="100" y="118" text-anchor="middle"
+        font-family="'PingFang SC','Microsoft YaHei','KaiTi','STKaiti',sans-serif"
+        font-size="72" font-weight="900"
+        fill="white"
+        stroke="#1a5276" stroke-width="4"
+        paint-order="stroke fill">毛概</text>
+  <!-- 底部装饰弧线 -->
+  <path d="M55 140 Q100 152 145 140" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+</svg>

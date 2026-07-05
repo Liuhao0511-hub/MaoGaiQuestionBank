@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./public/logo-site.svg" type="image/x-icon" sizes="32x32">
+    <!-- 兼容旧浏览器写法 -->
+    <link rel="shortcut icon" href="./public/logo-site.svg" type="image/x-icon">
+    <title>毛概题库练习系统</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-brand" onclick="navigate('home')">
+                <img src="public/logo-site.svg" alt="毛概题库" class="navbar-logo">
+                <span>毛概题库</span>
+            </div>
+
+            <!-- 桌面导航 -->
+            <div class="navbar-links desktop-nav">
+                <button class="nav-btn active" data-view="home" onclick="navigate('home')">章节</button>
+                <button class="nav-btn" data-view="wrong" onclick="navigate('wrong')">错题</button>
+                <button class="nav-btn" data-view="settings" onclick="navigate('settings')">设置</button>
+            </div>
+
+            <!-- 右侧工具区 -->
+            <div class="navbar-tools">
+                <!-- 主题切换 -->
+                <div class="theme-toggle-group" id="themeToggleGroup" role="radiogroup" aria-label="主题切换">
+                    <button class="theme-btn active" data-theme="auto" onclick="setTheme('auto')" title="跟随系统"
+                        aria-label="跟随系统" role="radio" aria-checked="true">🖥️</button>
+                    <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')" title="深色模式"
+                        aria-label="深色模式" role="radio" aria-checked="false">🌙</button>
+                    <button class="theme-btn" data-theme="light" onclick="setTheme('light')" title="浅色模式"
+                        aria-label="浅色模式" role="radio" aria-checked="false">☀️</button>
+                </div>
+
+                <!-- 外部链接 -->
+                <a class="nav-icon-link" href="https://github.com/K-zhaochao/MaoGaiQuestionBank" target="_blank"
+                    rel="noopener" title="GitHub">
+                    <svg viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                    <span class="nav-link-label">GitHub</span>
+                </a>
+                <a class="nav-icon-link" href="https://pd.qq.com/s/a3z72on9u?b=5" target="_blank" rel="noopener"
+                    title="跳蚤市场">
+                    <img src="public/logo.png" alt="跳蚤市场" class="nav-custom-icon">
+                    <span class="nav-link-label">跳蚤市场</span>
+                </a>
+                <a class="nav-icon-link" href="https://qm.qq.com/q/g4hI193nLG" target="_blank" rel="noopener"
+                    title="反馈">
+                    💬
+                    <span class="nav-link-label">反馈</span>
+                </a>
+            </div>
+
+            <!-- 移动端汉堡菜单 -->
+            <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" title="菜单">☰</button>
+        </div>
+    </nav>
+
+    <!-- 移动端导航弹出层 -->
+    <div class="nav-mobile-dropdown" id="mobileDropdown">
+        <button class="nav-btn active" data-view="home" onclick="navigate('home');closeMobileMenu()">📖 章节列表</button>
+        <button class="nav-btn" data-view="wrong" onclick="navigate('wrong');closeMobileMenu()">📝 错题本</button>
+        <button class="nav-btn" data-view="settings" onclick="navigate('settings');closeMobileMenu()">⚙️ 设置</button>
+        <hr style="border-color:var(--border-color);margin:4px 0;">
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button class="theme-btn active" data-theme="auto" onclick="setTheme('auto')"
+                style="flex:1;min-width:60px;padding:8px 6px;border:1px solid var(--border-color);border-radius:20px;background:transparent;color:var(--text-secondary);cursor:pointer;font-size:0.85rem;font-family:var(--font-sans);">🖥️
+                系统</button>
+            <button class="theme-btn" data-theme="dark" onclick="setTheme('dark')"
+                style="flex:1;min-width:60px;padding:8px 6px;border:1px solid var(--border-color);border-radius:20px;background:transparent;color:var(--text-secondary);cursor:pointer;font-size:0.85rem;font-family:var(--font-sans);">🌙
+                深色</button>
+            <button class="theme-btn" data-theme="light" onclick="setTheme('light')"
+                style="flex:1;min-width:60px;padding:8px 6px;border:1px solid var(--border-color);border-radius:20px;background:transparent;color:var(--text-secondary);cursor:pointer;font-size:0.85rem;font-family:var(--font-sans);">☀️
+                浅色</button>
+        </div>
+        <hr style="border-color:var(--border-color);margin:4px 0;">
+        <a class="nav-icon-link" href="https://github.com/K-zhaochao/MaoGaiQuestionBank" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" style="width:16px;height:16px;">
+                <path
+                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+            </svg>
+            GitHub
+        </a>
+        <a class="nav-icon-link" href="https://pd.qq.com/s/a3z72on9u?b=5" target="_blank" rel="noopener">
+            <img src="public/logo.png" alt="跳蚤市场" style="width:16px;height:16px;border-radius:3px;">
+            跳蚤市场
+        </a>
+        <a class="nav-icon-link" href="https://qm.qq.com/q/g4hI193nLG" target="_blank" rel="noopener">💬 反馈</a>
+    </div>
+
+    <!-- 全局进度条 -->
+    <div class="progress-bar-container" id="progressBarContainer">
+        <div class="progress-bar-inner">
+            <span class="progress-label" id="progressLabel">总进度</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width:0%;"></div>
+            </div>
+            <span class="progress-text" id="progressText">0/0</span>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+        <!-- 首页 - 章节列表 -->
+        <div class="page active" id="pageHome">
+            <div id="homeContent"></div>
+        </div>
+
+        <!-- 章节练习页 -->
+        <div class="page" id="pageChapter">
+            <div id="chapterContent"></div>
+        </div>
+
+        <!-- 错题本页 -->
+        <div class="page" id="pageWrong">
+            <div id="wrongContent"></div>
+        </div>
+
+        <!-- 设置页 -->
+        <div class="page" id="pageSettings">
+            <div id="settingsContent"></div>
+        </div>
+    </div>
+
+    <!-- 回到顶部 -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        title="回到顶部">↑</button>
+
+    <!-- ========== 数据文件（按章节加载） ========== -->
+    <script src="js/data/ch00.js"></script>
+    <script src="js/data/ch01.js"></script>
+    <script src="js/data/ch02.js"></script>
+    <script src="js/data/ch03.js"></script>
+    <script src="js/data/ch04.js"></script>
+    <script src="js/data/ch05.js"></script>
+    <script src="js/data/ch06.js"></script>
+    <script src="js/data/ch07.js"></script>
+    <script src="js/data/ch08.js"></script>
+    <script src="js/data/ch09.js"></script>
+    <script src="js/data/init.js"></script>
+
+    <!-- 核心逻辑 -->
+    <script src="js/app.js"></script>
+
+    <!-- 回到顶部按钮 -->
+    <script>
+        window.addEventListener('scroll', function () {
+            var btn = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+
+</html>
