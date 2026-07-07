@@ -8,7 +8,8 @@ const APP = {
     currentChapter: null,
     currentView: 'home',
     progress: {},
-    expandedExplanations: new Set()
+    expandedExplanations: new Set(),
+    favorites: new Set()
 };
 
 // ==================== 存储管理 ====================
@@ -101,6 +102,46 @@ function getWrongAnswers(chapterId) {
     return wrong;
 }
 
+// ==================== 收藏夹 ====================
+const FAVORITES_KEY = 'maogai_favorites';
+
+function loadFavorites() {
+    try {
+        const raw = localStorage.getItem(FAVORITES_KEY);
+        return raw ? new Set(JSON.parse(raw)) : new Set();
+    } catch (e) { return new Set(); }
+}
+
+function saveFavorites() {
+    try { localStorage.setItem(FAVORITES_KEY, JSON.stringify([...APP.favorites])); }
+    catch (e) { alert('本地存储空间不足，无法保存收藏。'); }
+}
+
+function isFavorite(questionId) {
+    return APP.favorites.has(questionId);
+}
+
+function toggleFavorite(questionId) {
+    if (APP.favorites.has(questionId)) APP.favorites.delete(questionId);
+    else APP.favorites.add(questionId);
+    saveFavorites();
+    updateFavoritesBadge();
+    // 仅更新当前卡片上的收藏按钮，避免整页重渲
+    const card = document.getElementById('card-' + questionId);
+    if (card) {
+        const btn = card.querySelector('.favorite-btn');
+        if (btn) {
+            const fav = APP.favorites.has(questionId);
+            btn.classList.toggle('favorited', fav);
+            btn.textContent = fav ? '★ 已收藏' : '☆ 收藏';
+        }
+    }
+}
+
+function updateFavoritesBadge() {
+    document.querySelectorAll('.fav-count').forEach(b => { b.textContent = APP.favorites.size; });
+}
+
 // ==================== 导入导出 ====================
 function exportProgress() {
     const data = { version: 1, exportedAt: new Date().toISOString(), progress: APP.progress, expandedExplanations: [...APP.expandedExplanations] };
@@ -168,8 +209,13 @@ function navigate(view, params) {
             document.getElementById('pageSettings').classList.add('active');
             renderSettings();
             break;
+        case 'favorites':
+            document.getElementById('pageFavorites').classList.add('active');
+            renderFavorites();
+            break;
     }
     
+    updateFavoritesBadge();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -386,7 +432,12 @@ function renderQuestionCard(q) {
     
     return `
         <div class="${cardClass}" id="card-${q.id}">
-            <div class="question-number">第 ${q.index} 题 ${resultIcon}</div>
+            <div class="question-number" style="display:flex;justify-content:space-between;align-items:center;">
+                <span>第 ${q.index} 题 ${resultIcon}</span>
+                <button class="favorite-btn ${isFavorite(q.id) ? 'favorited' : ''}" onclick="toggleFavorite('${q.id}')" title="收藏 / 取消收藏">
+                    ${isFavorite(q.id) ? '★ 已收藏' : '☆ 收藏'}
+                </button>
+            </div>
             <div class="question-content">${q.content}</div>
             ${answerHtml}
             <button class="explanation-toggle" onclick="toggleExplanation('${q.id}')">
@@ -558,6 +609,119 @@ function renderWrongAnswers(filterChapterId) {
     }
     
     container.innerHTML = html;
+}
+
+// ==================== 收藏夹渲染 ====================
+function renderFavorites() {
+    const container = document.getElementById('favoritesContent');
+    const byChapter = [];
+    QUESTION_BANK.chapters.forEach(ch => {
+        const qs = ch.questions.filter(q => APP.favorites.has(q.id));
+        if (qs.length) byChapter.push({ chapter: ch, questions: qs });
+    });
+
+    let html = `
+        <div class="wrong-header">
+            <h2>⭐ 收藏夹</h2>
+            <div style="display:flex;gap:8px;">
+                <button class="btn btn-sm btn-secondary" onclick="navigate('home')">← 返回目录</button>
+            </div>
+        </div>
+    `;
+
+    if (byChapter.length === 0) {
+        html += `
+            <div class="empty-state">
+                <div class="empty-state-icon">⭐</div>
+                <h3>收藏夹还是空的</h3>
+                <p>在题目卡片点击「收藏」按钮，就能把题目收集到这里，按章节随时复习。</p>
+            </div>
+        `;
+    } else {
+        byChapter.forEach(group => {
+            const gid = group.chapter.id;
+            html += `
+                <div class="question-section">
+                    <div class="section-header fav-group-header" onclick="toggleFavGroup('${gid}')">
+                        <h2>${group.chapter.title}</h2>
+                        <span class="section-badge">${group.questions.length} 题</span>
+                        <span class="group-toggle" id="fav-toggle-${gid}">▸ 展开</span>
+                    </div>
+                    <div class="fav-group-body" id="fav-group-${gid}" style="display:none;">
+            `;
+            html += group.questions.map(q => renderFavoriteCard(q)).join('');
+            html += '</div></div>';
+        });
+    }
+
+    container.innerHTML = html;
+    updateFavoritesBadge();
+}
+
+// 收藏夹：章节折叠/展开（默认全部收起）
+function toggleFavGroup(chapterId) {
+    const body = document.getElementById('fav-group-' + chapterId);
+    const toggle = document.getElementById('fav-toggle-' + chapterId);
+    if (!body) return;
+    const willShow = body.style.display === 'none';
+    body.style.display = willShow ? '' : 'none';
+    if (toggle) toggle.textContent = willShow ? '▾ 收起' : '▸ 展开';
+}
+
+function renderOptionsReadonly(q) {
+    // 收藏夹直接呈现"已选中正确答案"的终态：正确项同时带 selected(选中态) + correct-answer(绿色高亮)
+    if (q.type === 'judge') {
+        const correctIsRight = q.answer === '√';
+        return `
+            <div class="judge-buttons">
+                <div class="judge-btn ${correctIsRight ? 'selected correct-answer' : ''}">✅ 正确 (√)</div>
+                <div class="judge-btn ${correctIsRight ? '' : 'selected correct-answer'}">❌ 错误 (×)</div>
+            </div>`;
+    }
+    const correctLabels = q.answer.split('');
+    let html = '<ul class="options-list">';
+    q.options.forEach(opt => {
+        const isCorrect = correctLabels.includes(opt.label);
+        const cls = 'option-item' + (isCorrect ? ' selected correct-answer' : '');
+        html += `
+            <li class="${cls}">
+                <span class="option-label">${opt.label}.</span>
+                <span class="option-text">${opt.text}</span>
+            </li>`;
+    });
+    html += '</ul>';
+    return html;
+}
+
+function renderFavoriteCard(q) {
+    const expId = q.id + '-exp-fav';
+    const typeLabel = { judge: '判断题', single: '单选题', multi: '多选题' }[q.type] || '';
+    return `
+        <div class="question-card favorited" id="card-${q.id}">
+            <div class="question-number" style="display:flex;justify-content:space-between;align-items:center;">
+                <span>第 ${q.index} 题 · ${typeLabel}</span>
+                <button class="favorite-btn favorited" onclick="toggleFavorite('${q.id}');renderFavorites()">★ 已收藏</button>
+            </div>
+            <div class="question-content">${q.content}</div>
+            ${renderOptionsReadonly(q)}
+            <button class="explanation-toggle" onclick="toggleFavExplanation('${q.id}')">🔽 收起解析</button>
+            <div class="explanation-content visible" id="${expId}">
+                <strong>📖 解析：</strong>${q.explanation}
+                <br><br><strong>✅ 正确答案：</strong>${q.answer}
+            </div>
+        </div>
+    `;
+}
+
+function toggleFavExplanation(questionId) {
+    const expEl = document.getElementById(questionId + '-exp-fav');
+    if (!expEl) return;
+    const open = expEl.classList.toggle('visible');
+    const card = document.getElementById('card-' + questionId);
+    if (card) {
+        const btn = card.querySelector('.explanation-toggle');
+        if (btn) btn.textContent = open ? '🔽 收起解析' : '🔍 查看解析';
+    }
 }
 
 // ==================== 设置页渲染 ====================
@@ -755,6 +919,7 @@ function closeMobileMenu() {
 // ==================== 初始化 ====================
 function init() {
     APP.progress = loadProgress();
+    APP.favorites = loadFavorites();
     initTheme();
     try {
         const expRaw = localStorage.getItem('maogai_expanded');

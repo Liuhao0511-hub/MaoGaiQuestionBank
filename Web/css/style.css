@@ -584,6 +584,24 @@ a:hover {
     font-weight: 600;
 }
 
+/* 收藏夹：章节折叠 */
+.fav-group-header {
+    cursor: pointer;
+    user-select: none;
+}
+
+.fav-group-header:hover {
+    background: var(--bg-hover);
+}
+
+.group-toggle {
+    margin-left: auto;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    font-family: var(--font-ui);
+}
+
 .question-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -651,6 +669,23 @@ a:hover {
 .option-item.correct-answer {
     background: var(--success-bg);
     border-color: var(--success);
+}
+
+/* 收藏夹：正确答案呈现"已选中"状态——加绿色勾选标记 */
+.option-item.correct-answer::before {
+    content: '✓';
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+    border-radius: 50%;
+    background: var(--success);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .option-item.wrong-answer {
@@ -1131,4 +1166,46 @@ a:hover {
     .back-to-top:hover {
         transform: none;
     }
+}
+
+/* === 收藏按钮 === */
+.favorite-btn {
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    white-space: nowrap;
+    transition: all var(--transition);
+}
+
+.favorite-btn:hover {
+    border-color: var(--warning);
+    color: var(--warning);
+}
+
+.favorite-btn.favorited {
+    color: var(--warning);
+    border-color: var(--warning);
+    background: var(--warning-bg);
+}
+
+.fav-count {
+    display: inline-block;
+    min-width: 18px;
+    margin-left: 4px;
+    padding: 0 5px;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    text-align: center;
+    border-radius: 999px;
+    background: var(--warning);
+    color: #fff;
+}
+
+.question-card.favorited {
+    border-left: 3px solid var(--warning);
 }

@@ -24,6 +24,7 @@
             <div class="navbar-links desktop-nav">
                 <button class="nav-btn active" data-view="home" onclick="navigate('home')">章节</button>
                 <button class="nav-btn" data-view="wrong" onclick="navigate('wrong')">错题</button>
+                <button class="nav-btn" data-view="favorites" onclick="navigate('favorites')">收藏 <span class="fav-count">0</span></button>
                 <button class="nav-btn" data-view="settings" onclick="navigate('settings')">设置</button>
             </div>
 
@@ -69,6 +70,7 @@
     <div class="nav-mobile-dropdown" id="mobileDropdown">
         <button class="nav-btn active" data-view="home" onclick="navigate('home');closeMobileMenu()">📖 章节列表</button>
         <button class="nav-btn" data-view="wrong" onclick="navigate('wrong');closeMobileMenu()">📝 错题本</button>
+        <button class="nav-btn" data-view="favorites" onclick="navigate('favorites');closeMobileMenu()">⭐ 收藏夹 <span class="fav-count">0</span></button>
         <button class="nav-btn" data-view="settings" onclick="navigate('settings');closeMobileMenu()">⚙️ 设置</button>
         <hr style="border-color:var(--border-color);margin:4px 0;">
         <div style="display:flex;gap:6px;flex-wrap:wrap;">
@@ -128,6 +130,11 @@
         <!-- 设置页 -->
         <div class="page" id="pageSettings">
             <div id="settingsContent"></div>
+        </div>
+
+        <!-- 收藏夹页 -->
+        <div class="page" id="pageFavorites">
+            <div id="favoritesContent"></div>
         </div>
     </div>
 
